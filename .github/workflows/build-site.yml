@@ -27,6 +27,7 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
+          cache-dependency-path: site/package-lock.json
           node-version: 20
           cache: 'npm'
 
@@ -66,7 +67,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: Push build of ${{github.ref_name}} to prod (#${{github.run_id}})
+      name: Deploy ${{github.ref_name}} (#${{github.run_id}})
       url: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}
 
     steps:
