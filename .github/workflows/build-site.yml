@@ -1,0 +1,104 @@
+name: Build site
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: "build-site"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: Build ${{github.ref_name}} (#${{github.run_id}})
+      url: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}
+    
+    steps:
+      - name: Checkout requested branch
+        uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Install Node packages
+        run: |
+          cd site
+          npm ci
+          cd ../
+
+      - name: Install Ruby packages
+        run: |
+          cd site
+          bundle install
+          cd ../
+
+      - name: Build static files
+        run: |
+          cd site
+          npx tsc
+          bundle exec middleman build
+          cd ../
+
+      - name: Cache build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-files
+          path: site/build/
+          overwrite: true
+
+  push:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: Push build of ${{github.ref_name}} to prod (#${{github.run_id}})
+      url: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}
+
+    steps:
+      - name: Checkout the requested branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reset to first commit
+        run: | 
+          FIRST_COMMIT_SHA1=$(git rev-list --max-parents=0 --abbrev-commit HEAD | awk 'FNR <= 1')
+          git reset --hard "$FIRST_COMMIT_SHA1"
+
+      - name: Delete everything except .git folder
+        run: find . ! -name '.' ! -name '.git' ! -path './.git/*' -type d,f -exec rm -rf {} +
+
+      - name: Retrieve website files from cache of Job 1
+        uses: actions/download-artifact@v4
+        with:
+          name: static-files
+          github-token: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Commit all changes
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -m "ci: add website files"
+
+      - name: Force push to prod branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          branch: prod
+          force: true
