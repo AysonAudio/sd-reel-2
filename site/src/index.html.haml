@@ -1,9 +1,14 @@
+- content_for :styles do
+    = stylesheet_link_tag "site"
+- content_for :apps do
+    = javascript_include_tag "portfolio"
+
 %section.hero.is-primary
-    .hero-body.is-flex.is-align-items-center.is-flex-direction-column
+    .hero-body.is-flex.is-flex-direction-column.is-align-items-center.has-text-centered
         %figure.image.is-128x128.is-inline-block
-            %img.logo.is-square(src="img/logo-big.svg" alt="Logo")/
-        %p.title.is-1 Ayson Audio
-        %p.subtitle.is-3 sound designer, composer, developer
+            %img.is-square(src="assets/logo-big.svg" alt="Logo")/
+        %h1.title.is-1 Ayson Audio
+        %h3.subtitle.is-3 sound designer, composer, developer
 
 %section.is-medium.p-6
     .container.is-flex.is-justify-content-center

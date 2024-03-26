@@ -4,8 +4,13 @@
         %meta(charset="UTF-8")/
         %meta(name="viewport" content="width=device-width, initial-scale=1.0")/
         %title= current_page.data.title || "Ayson Audio"
+
         = stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
-        = stylesheet_link_tag "site"
-        = javascript_include_tag "site"
+        = javascript_include_tag "https://kit.fontawesome.com/dce4e0af39.js"
+
+        - if content_for?(:styles)
+            = yield_content :styles
+        - if content_for?(:apps)
+            = yield_content :apps
     %body
         = yield

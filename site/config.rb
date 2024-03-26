@@ -3,7 +3,7 @@
 
 set :source, 'src'
 set :fonts_dir, 'fonts'
-set :images_dir, 'img'
+set :images_dir, 'assets'
 set :layouts_dir, 'page'
 set :css_dir, 'scss'
 set :js_dir, '.js'
