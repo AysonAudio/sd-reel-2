@@ -12,6 +12,9 @@ tabs:
     compositions:
         label: "Compositions"
         icon: "fas fa-scroll"
+
+reels:
+    - {vid: "https://www.youtube.com/embed/npPnXA_-04U"}
 ---
 
 
@@ -43,7 +46,14 @@ tabs:
         %ul
             - current_page.data.tabs.each do |k,v|
                 = partial "parts/tab", locals: {label:v.label, icon:v.icon}
+
 %section.px-5#reels
+    - for reel in current_page.data.reels
+        .content.is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6
+            = partial "blocks/panel", locals: reel
+
 %section.px-5#projects
+
 %section.px-5#music
+
 %section.px-5#compositions
