@@ -15,6 +15,75 @@ tabs:
 
 reels:
     - {vid: "https://www.youtube.com/embed/npPnXA_-04U"}
+
+projects:
+    -
+        vid: "https://www.youtube.com/embed/TEHATCPCBd4"
+        emblem: {src: "assets/logo.svg"}
+        title: "Animated Film"
+        subtitle: "sound design by chris ayson\nmusic by pierce cram"
+        links:
+            -
+                href: "https://www.digipen.edu/showcase/student-animations/prepawsterous"
+                label: "More Details"
+        highlight:
+            icon: "fas fa-2x fa-award"
+            title: "Winner, Best Sound"
+            subtitle: "2021 KINO Short Film Festival"
+        cells:
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Winner, Best PNW Student Film"
+                subtitle: "2021 KINO Short Film Festival"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Winner, Best Student Animation"
+                subtitle: "2021 PRIX ROYAL Paris Animation Awards"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Winner, Best Dramatic Sequence"
+                subtitle: "2021 PRIX ROYAL Paris Animation Awards"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Winner, Best Children Comedy"
+                subtitle: "2020 International Student Animated Film Animafantasia Festival"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Semi-Finalist, Best Animated Film"
+                subtitle: "2022 Children Cinema Awards"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Semi-Finalist, Best Student Animation"
+                subtitle: '2022 Drawtastic "Golden Pencil Awards"'
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Finalist (Highly Commended), Film of the Year, 2D Animation"
+                subtitle: "2021 The Rookie Awards"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Finalist, Golden Student Category"
+                subtitle: "2021 Golden Short Film Festival"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Finalist, Best Character-Based Short"
+                subtitle: "2020 Los Angeles Animation Festival"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Finalist, Best Animated Short Film"
+                subtitle: "2020 The Short Film Awards"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Finalist, Best Animated Film"
+                subtitle: "2020 Oregon Short Film Festival"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Finalist, Best Washington Film"
+                subtitle: "2020 Oregon Short Film Festival"
+            -
+                icon: "fas fa-2x fa-award"
+                title: "Semi-Finalist, Best Student Animation Film"
+                subtitle: "2020 Student Los Angeles Film Awards"
+            
 ---
 
 
@@ -53,6 +122,10 @@ reels:
             = partial "blocks/panel", locals: reel
 
 %section.px-5#projects
+    - for project in current_page.data.projects
+        .content.is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6
+            = partial "blocks/panel", locals: project
+            = partial "blocks/showcase", locals: project
 
 %section.px-5#music
 
