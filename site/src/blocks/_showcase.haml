@@ -1,0 +1,37 @@
+- if defined?(highlight)
+    .media.mt-6.mb-6
+        .media-left
+            - if defined?(highlight.emblem)
+                %figure.image.is-64x64
+                    %img{
+                        src:highlight.emblem.src,
+                        alt:highlight.emblem.alt||""}/
+            - if defined?(highlight.icon)
+                %span.icon.is-large
+                    %i{class:highlight.icon}
+        .media-content.is-clipped
+            - if defined?(highlight.title)
+                %p.title.is-4= highlight.title
+            - if defined?(highlight.subtitle)
+                %p.subtitle.is-4= highlight.subtitle
+
+- if defined?(cells)
+    .container.is-fullhd
+        .grid.is-col-min-12
+            - for cell in cells
+                .cell.p-5
+                    .media
+                        .media-left
+                            - if defined?(cell.emblem)
+                                %figure.image.is-64x64
+                                    %img{
+                                        src:cell.emblem.src,
+                                        alt:cell.emblem.alt||""}/
+                            - if defined?(cell.icon)
+                                %span.icon.is-large
+                                    %i{class:cell.icon}
+                        .media-content
+                            - if defined?(cell.title)
+                                %p.title.is-6= cell.title
+                            - if defined?(cell.subtitle)
+                                %p.subtitle.is-6= cell.subtitle

@@ -1,0 +1,35 @@
+
+.card(style="max-width: 640px" data-theme="dark")
+    - if defined?(vid)
+        .card-image
+            - if defined?(vid)
+                %iframe{
+                    src: vid,
+                    style: "max-width: 100%",
+                    width: "640",
+                    height: "360",
+                    frameborder: "0",
+                    allowfullscreen: ""}
+    - if defined?(emblem) || defined?(title) || defined?(subtitle) || defined?(cells)
+        .card-content
+            .media
+                .media-left.is-hidden-mobile
+                    - if defined?(emblem)
+                        %figure.image.is-96x96
+                            %img{src:emblem.src, alt:emblem.alt||""}/
+                    - if defined?(icon)
+                        %span.icon.is-large
+                            %i(class=icon)
+                .media-content.is-clipped
+                    - if defined?(title)
+                        %p.title.is-3= title
+                    - if defined?(subtitle)
+                        %p.subtitle.is-6{style: "
+                            white-space: pre-line;
+                            font-variant: small-caps
+                        "}= subtitle
+    - if defined?(links)
+        %footer.card-footer
+            - if defined?(links)
+                - for link in links
+                    %a.card-footer-item{href:link.href}= link.label||""
