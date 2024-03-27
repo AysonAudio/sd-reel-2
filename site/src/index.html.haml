@@ -1,7 +1,23 @@
+---
+tabs:
+    reels:
+        label: "Reels"
+        icon: "fas fa-film"
+    projects:
+        label: "Projects"
+        icon: "fas fa-clipboard-check"
+    music:
+        label: "Music"
+        icon: "fas fa-music"
+    compositions:
+        label: "Compositions"
+        icon: "fas fa-scroll"
+---
 - content_for :styles do
     = stylesheet_link_tag "site"
 - content_for :apps do
-    = javascript_include_tag "portfolio"
+    = javascript_include_tag "portfolio", type: :module
+
 
 %section.hero.is-primary
     .hero-body.is-flex.is-flex-direction-column.is-align-items-center.has-text-centered
@@ -10,11 +26,12 @@
         %h1.title.is-1 Ayson Audio
         %h3.subtitle.is-3 sound designer, composer, developer
 
-%section.is-medium.p-6
-    .container.is-flex.is-justify-content-center
-        %iframe( |
-            width="640" |
-            height="360" |
-            src="https://www.youtube.com/embed/npPnXA_-04U" |
-            frameborder="0" |
-            allowfullscreen) |
+%section#tabs
+    .tabs.is-centered
+        %ul
+            - current_page.data.tabs.each do |k,v|
+                = partial "parts/tab", locals: {label:v.label, icon:v.icon}
+%section.px-5#reels
+%section.px-5#projects
+%section.px-5#music
+%section.px-5#compositions

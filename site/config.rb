@@ -13,7 +13,7 @@ set :index_file, 'index.html'
 # https://middlemanapp.com/advanced/configuration/#environment-specific-settings
 
 configure :development do
-  activate :livereload
+  activate :livereload, ignore: ['ts/*']
 end
 
 configure :build do
