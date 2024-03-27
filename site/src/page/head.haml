@@ -8,9 +8,7 @@
         = stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
         = javascript_include_tag "https://kit.fontawesome.com/dce4e0af39.js"
 
-        - if content_for?(:styles)
-            = yield_content :styles
-        - if content_for?(:apps)
-            = yield_content :apps
+        = stylesheet_link_tag "site"
+        = javascript_include_tag "portfolio", type: :module
     %body
         = yield
