@@ -4,6 +4,6 @@
         "declaration": false,
         "module": "ESNext",
         "target": "ESNext",
-        "outDir": "src/.js"
+        "outDir": "src/artifacts"
     }
 }

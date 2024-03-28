@@ -6,7 +6,7 @@ set :fonts_dir, 'fonts'
 set :images_dir, 'assets'
 set :layouts_dir, 'page'
 set :css_dir, 'scss'
-set :js_dir, '.js'
+set :js_dir, 'artifacts'
 set :index_file, 'index.html'
 
 # Configure environments
