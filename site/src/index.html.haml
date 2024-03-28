@@ -105,7 +105,7 @@ projects:
     .tabs.is-centered
         %ul
             - current_page.data.tabs.each do |k,v|
-                = partial "parts/tab", locals: {label:v.label, icon:v.icon}
+                = partial "parts/tab", locals: {a_class:k, label:v.label, icon:v.icon}
 
 %section.px-5#reels
     - for reel in current_page.data.reels
