@@ -4,7 +4,7 @@
 
 /** Cache of elems manipulated by app */
 type ElemCache = {
-    tabs: NodeListOf<HTMLAnchorElement>;
+    tabBtns: NodeListOf<HTMLAnchorElement>;
     sections: {
         reels: HTMLElement;
         projects: HTMLElement;
@@ -20,7 +20,7 @@ type ElemCache = {
  */
 export const GetElemCache: () => ElemCache = (() => {
     let cache: ElemCache = {
-        tabs: document.querySelectorAll("#tabs > .tabs > ul > li > a"),
+        tabBtns: document.querySelectorAll("#tabs > .tabs > ul > li > a"),
         sections: {
             reels: document.querySelector("#reels"),
             projects: document.querySelector("#projects"),
@@ -36,11 +36,11 @@ export const GetElemCache: () => ElemCache = (() => {
 // ##################################################################### //
 
 /** Make a tab button hide / unhide content sections and set active tab */
-function initTab(tab: HTMLAnchorElement) {
+function initTabBtn(tabBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
-    const targetSectionId = tab.className;
+    const targetSectionId = tabBtn.className;
 
-    tab.addEventListener("click", () => {
+    tabBtn.addEventListener("click", () => {
         for (const id in cache.sections) {
             const section: HTMLElement = cache.sections[id];
 
@@ -48,9 +48,9 @@ function initTab(tab: HTMLAnchorElement) {
             else section.classList.add("is-hidden");
         }
 
-        for (const _tab of cache.tabs)
-            _tab.parentElement.classList.remove("is-active");
-        tab.parentElement.classList.add("is-active");
+        for (const _tabBtn of cache.tabBtns)
+            _tabBtn.parentElement.classList.remove("is-active");
+        tabBtn.parentElement.classList.add("is-active");
     });
 }
 
@@ -60,6 +60,6 @@ function initTab(tab: HTMLAnchorElement) {
 
 document.addEventListener("DOMContentLoaded", () => {
     let cache = GetElemCache();
-    for (const tab of cache.tabs) initTab(tab);
-    cache.tabs[0].click();
+    for (const tab of cache.tabBtns) initTabBtn(tab);
+    cache.tabBtns[0].click();
 });
