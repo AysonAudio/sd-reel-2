@@ -1,0 +1,8 @@
+%nav.pagination.is-centered.my-5(role="navigation" aria-label="pagination")
+    %ul.pagination-list
+        - for n in 0..(pages-1)
+            %li
+                %a.pagination-link(id="btn-#{type}-#{n}" aria-label="Goto page #{n+1}")
+                    %span.icon
+                        %i(class=icon)
+                    %span= n+1

@@ -108,13 +108,21 @@ projects:
                 = partial "parts/tab", locals: {a_class:k, label:v.label, icon:v.icon}
 
 %section.px-5#reels
-    - for reel in current_page.data.reels
-        .content.is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6
+    - reels_icon = current_page.data.tabs.reels.icon
+    = partial "blocks/nav", locals: {pages:3, type:"reel", icon:reels_icon}
+
+    - current_page.data.reels.each_with_index do |reel, index|
+        - id = "reel-" + index.to_s
+        .is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6(id=id)
             = partial "blocks/panel", locals: reel
 
 %section.px-5#projects
-    - for project in current_page.data.projects
-        .content.is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6
+    - projects_icon = current_page.data.tabs.projects.icon
+    = partial "blocks/nav", locals: {pages:3, type:"project", icon:projects_icon}
+
+    - current_page.data.projects.each_with_index do |project, index|
+        - id = "project-" + index.to_s
+        .is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6(id=id)
             = partial "blocks/panel", locals: project
             = partial "blocks/showcase", locals: project
 
