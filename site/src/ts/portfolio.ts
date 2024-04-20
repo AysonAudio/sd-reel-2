@@ -31,8 +31,16 @@ type ElemCache = {
  */
 export const GetElemCache: () => ElemCache = (() => {
     let cache: ElemCache = {
+        /**
+         * Tab buttons -> hide / unhide : sections
+         * Created in parts/_tab.haml | Used in index.html.haml
+         */
         tabBtns: document.querySelectorAll("#tabs > .tabs > ul > li > a"),
 
+        /**
+         * Pagination buttons -> hide / unhide : containers in sections
+         * Created in blocks/_nav.haml | Used in index.html.haml
+         */
         reelPageBtns: document.querySelectorAll("[id^='btn-reel-']"),
         projectPageBtns: document.querySelectorAll("[id^='btn-project-']"),
         musicPageBtns: document.querySelectorAll("[id^='btn-music-']"),
@@ -40,6 +48,10 @@ export const GetElemCache: () => ElemCache = (() => {
             "[id^='btn-composition-']"
         ),
 
+        /**
+         * Sections <- hidden / unhidden : click tab buttons
+         * Created in index.html.haml
+         */
         sections: {
             reels: document.querySelector("#reels"),
             projects: document.querySelector("#projects"),
@@ -47,6 +59,10 @@ export const GetElemCache: () => ElemCache = (() => {
             compositions: document.querySelector("#compositions"),
         },
 
+        /**
+         * Containers in sections <- hidden / unhidden : click page buttons
+         * Created in index.html.haml
+         */
         reelPages: document.querySelectorAll("[id^='reel-']"),
         projectPages: document.querySelectorAll("[id^='project-']"),
         musicPages: document.querySelectorAll("[id^='music-']"),
@@ -59,27 +75,35 @@ export const GetElemCache: () => ElemCache = (() => {
 // ############################# INIT FUNCS ############################ //
 // ##################################################################### //
 
-/** Make a tab button hide / unhide content sections and set active tab */
+/**
+ * Make a tab button hide / unhide content sections and set active tab.
+ */
 function initTabBtn(tabBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
     const targetSectionId = tabBtn.className;
 
     tabBtn.addEventListener("click", () => {
+        // Use CSS classes to hide / unhide
         for (const id in cache.sections) {
             const section: HTMLElement = cache.sections[id];
             if (id == targetSectionId) section.classList.remove("is-hidden");
             else section.classList.add("is-hidden");
         }
-
+        // Use CSS classes to set active
         for (const _tabBtn of cache.tabBtns)
             _tabBtn.parentElement.classList.remove("is-active");
         tabBtn.parentElement.classList.add("is-active");
     });
 }
 
-/** Make a page button hide / unhide content sections and set active page */
+/**
+ * Make a page button hide / unhide content sections and set active page.
+ *
+ */
 function initPageBtn(pageBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
+
+    // Get id of page (container in section). Extracts it from page button id
     const targetPageId = pageBtn.id.slice("btn-".length);
     const targetPageType = targetPageId.slice(0, targetPageId.indexOf("-"));
     const targetPageNum = targetPageId.slice(targetPageId.indexOf("-") + 1);
@@ -87,6 +111,7 @@ function initPageBtn(pageBtn: HTMLAnchorElement) {
     const targetPagesList = targetPageType + "Pages";
 
     pageBtn.addEventListener("click", () => {
+        // Use CSS classes to hide / unhide
         for (const elem of cache[targetPagesList] as NodeListOf<HTMLElement>) {
             if (elem.id == targetPageId)
                 for (const child of elem.children)
@@ -95,7 +120,7 @@ function initPageBtn(pageBtn: HTMLAnchorElement) {
                 for (const child of elem.children)
                     child.classList.add("is-hidden");
         }
-
+        // Update screen reader metadata
         for (const _pageBtn of cache[targetPageBtnList]) {
             _pageBtn.classList.remove("is-current");
             _pageBtn.setAttribute(
@@ -117,18 +142,17 @@ function initPageBtn(pageBtn: HTMLAnchorElement) {
 document.addEventListener("DOMContentLoaded", () => {
     let cache = GetElemCache();
 
+    // Tab buttons -> hide / unhide : sections
     for (const tabBtn of cache.tabBtns) initTabBtn(tabBtn);
     cache.tabBtns[0]?.click();
 
+    // Pagination buttons -> hide / unhide : containers in sections
     for (const pageBtn of cache.reelPageBtns) initPageBtn(pageBtn);
     cache.reelPageBtns[0]?.click();
-
     for (const pageBtn of cache.projectPageBtns) initPageBtn(pageBtn);
     cache.projectPageBtns[0]?.click();
-
     for (const pageBtn of cache.musicPageBtns) initPageBtn(pageBtn);
     cache.musicPageBtns[0]?.click();
-
     for (const pageBtn of cache.compositionPageBtns) initPageBtn(pageBtn);
     cache.compositionPageBtns[0]?.click();
 });
