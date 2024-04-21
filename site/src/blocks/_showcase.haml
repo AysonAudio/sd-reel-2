@@ -1,3 +1,47 @@
+-# local parameter: Array of YAML Objects
+-#
+-#     highlight?: YAML Object
+-#     A large horizontally-centered rectangle with images and text descriptions
+-#
+-#         emblem?: YAML Object
+-#         A small image shown next to the text description
+-#
+-#             src: string
+-#             URI to an image file
+-#
+-#             alt?: string
+-#             Alt text if image fails
+-#
+-#         icon?: string
+-#         CSS classes from Font Awesome
+-#
+-#         title?: string
+-#         Primary text description
+-#
+-#         subtitle?: string
+-#         Secondary text description
+-#
+-#     cells?: Array of YAML Objects
+-#     A grid of smaller rectangles with images and text descriptions
+-#
+-#         emblem?: YAML Object
+-#         A small image shown next to the text description
+-#
+-#             src: string
+-#             URI to an image file
+-#
+-#             alt?: string
+-#             Alt text if image fails
+-#
+-#         icon?: string
+-#         CSS classes from Font Awesome
+-#
+-#         title?: string
+-#         Primary text description
+-#
+-#         subtitle?: string
+-#         Secondary text description
+
 - if defined?(highlight)
     .media.mt-6.mb-6
         .media-left
