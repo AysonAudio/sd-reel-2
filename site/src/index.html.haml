@@ -130,6 +130,7 @@ projects:
         - id = "portfolio-" + index.to_s
         .is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6(id=id)
             = partial "blocks/panel", locals: portfolio
+            = partial "blocks/showcase", locals: portfolio
 
 %section.px-5#projects
     - projects_icon = current_page.data.tabs.projects.icon
