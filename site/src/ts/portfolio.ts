@@ -80,13 +80,13 @@ export const GetElemCache: () => ElemCache = (() => {
  */
 function initTabBtn(tabBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
-    const targetSectionId = tabBtn.className;
+    const targetSectionTag = tabBtn.className;
 
     tabBtn.addEventListener("click", () => {
         // Use CSS classes to hide / unhide
         for (const id in cache.sections) {
             const section: HTMLElement = cache.sections[id];
-            if (id == targetSectionId) section.classList.remove("is-hidden");
+            if (id == targetSectionTag) section.classList.remove("is-hidden");
             else section.classList.add("is-hidden");
         }
         // Use CSS classes to set active
