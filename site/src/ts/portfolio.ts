@@ -80,6 +80,8 @@ export const GetElemCache: () => ElemCache = (() => {
  */
 function initTabBtn(tabBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
+
+    // Get tag of section to unhide. Extracts it from tab button class.
     const targetSectionTag = tabBtn.className;
 
     tabBtn.addEventListener("click", () => {
@@ -103,7 +105,7 @@ function initTabBtn(tabBtn: HTMLAnchorElement) {
 function initPageBtn(pageBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
 
-    // Get id of page (container in section). Extracts it from page button id
+    // Get id of page to unhide. Extracts it from page button id
     const targetPageId = pageBtn.id.slice("btn-".length);
     const targetPageType = targetPageId.slice(0, targetPageId.indexOf("-"));
     const targetPageNum = targetPageId.slice(targetPageId.indexOf("-") + 1);
