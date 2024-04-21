@@ -1,3 +1,34 @@
+-# local parameter: Array of YAML Objects
+-#
+-#     vid?: string
+-#     A link to a YouTube video
+-#     
+-#     emblem?: YAML Object
+-#     A small image shown next to the text description
+-#
+-#         src: string
+-#         URI to an image file
+-#
+-#         alt?: string
+-#         Alt text if image fails
+-#
+-#     icon?: string
+-#     CSS classes from Font Awesome
+-#
+-#     title?: string
+-#     Primary text description
+-#
+-#     subtitle?: string
+-#     Secondary text description
+-#
+-#     links?: Array of YAML Objects
+-#     A group of anchor buttons
+-#
+-#         href: string
+-#         URI to link to
+-#
+-#         label: string
+-#         Anchor button text
 
 .card(style="max-width: 640px" data-theme="dark")
     - if defined?(vid)
