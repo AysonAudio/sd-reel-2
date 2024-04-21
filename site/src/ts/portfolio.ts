@@ -8,20 +8,14 @@ type ElemCache = {
 
     reelPageBtns: NodeListOf<HTMLAnchorElement>;
     projectPageBtns: NodeListOf<HTMLAnchorElement>;
-    musicPageBtns: NodeListOf<HTMLAnchorElement>;
-    compositionPageBtns: NodeListOf<HTMLAnchorElement>;
 
     sections: {
         reels: HTMLElement;
         projects: HTMLElement;
-        music: HTMLElement;
-        compositions: HTMLElement;
     };
 
     reelPages: NodeListOf<HTMLElement>;
     projectPages: NodeListOf<HTMLElement>;
-    musicPages: NodeListOf<HTMLElement>;
-    compositionPages: NodeListOf<HTMLElement>;
 };
 
 /**
@@ -43,10 +37,6 @@ export const GetElemCache: () => ElemCache = (() => {
          */
         reelPageBtns: document.querySelectorAll("[id^='btn-reel-']"),
         projectPageBtns: document.querySelectorAll("[id^='btn-project-']"),
-        musicPageBtns: document.querySelectorAll("[id^='btn-music-']"),
-        compositionPageBtns: document.querySelectorAll(
-            "[id^='btn-composition-']"
-        ),
 
         /**
          * Sections <- hidden / unhidden : click tab buttons
@@ -55,8 +45,6 @@ export const GetElemCache: () => ElemCache = (() => {
         sections: {
             reels: document.querySelector("#reels"),
             projects: document.querySelector("#projects"),
-            music: document.querySelector("#music"),
-            compositions: document.querySelector("#compositions"),
         },
 
         /**
@@ -65,8 +53,6 @@ export const GetElemCache: () => ElemCache = (() => {
          */
         reelPages: document.querySelectorAll("[id^='reel-']"),
         projectPages: document.querySelectorAll("[id^='project-']"),
-        musicPages: document.querySelectorAll("[id^='music-']"),
-        compositionPages: document.querySelectorAll("[id^='composition-']"),
     };
     return () => cache;
 })();
@@ -153,8 +139,4 @@ document.addEventListener("DOMContentLoaded", () => {
     cache.reelPageBtns[0]?.click();
     for (const pageBtn of cache.projectPageBtns) initPageBtn(pageBtn);
     cache.projectPageBtns[0]?.click();
-    for (const pageBtn of cache.musicPageBtns) initPageBtn(pageBtn);
-    cache.musicPageBtns[0]?.click();
-    for (const pageBtn of cache.compositionPageBtns) initPageBtn(pageBtn);
-    cache.compositionPageBtns[0]?.click();
 });

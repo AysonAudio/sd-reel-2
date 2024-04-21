@@ -13,12 +13,6 @@ tabs:
     projects:
         label: "Projects"
         icon: "fas fa-clipboard-check"
-    music:
-        label: "Music"
-        icon: "fas fa-music"
-    compositions:
-        label: "Compositions"
-        icon: "fas fa-scroll"
 
 ########################################
 # Array of components:
@@ -146,7 +140,3 @@ projects:
         .is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6(id=id)
             = partial "blocks/panel", locals: project
             = partial "blocks/showcase", locals: project
-
-%section.px-5#music
-
-%section.px-5#compositions
