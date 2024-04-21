@@ -6,15 +6,15 @@
 type ElemCache = {
     tabBtns: NodeListOf<HTMLAnchorElement>;
 
-    reelPageBtns: NodeListOf<HTMLAnchorElement>;
+    portfolioPageBtns: NodeListOf<HTMLAnchorElement>;
     projectPageBtns: NodeListOf<HTMLAnchorElement>;
 
     sections: {
-        reels: HTMLElement;
+        portfolios: HTMLElement;
         projects: HTMLElement;
     };
 
-    reelPages: NodeListOf<HTMLElement>;
+    portfolioPages: NodeListOf<HTMLElement>;
     projectPages: NodeListOf<HTMLElement>;
 };
 
@@ -35,7 +35,7 @@ export const GetElemCache: () => ElemCache = (() => {
          * Pagination buttons -> hide / unhide : containers in sections
          * Created in blocks/_nav.haml | Used in index.html.haml
          */
-        reelPageBtns: document.querySelectorAll("[id^='btn-reel-']"),
+        portfolioPageBtns: document.querySelectorAll("[id^='btn-portfolio-']"),
         projectPageBtns: document.querySelectorAll("[id^='btn-project-']"),
 
         /**
@@ -43,7 +43,7 @@ export const GetElemCache: () => ElemCache = (() => {
          * Created in index.html.haml
          */
         sections: {
-            reels: document.querySelector("#reels"),
+            portfolios: document.querySelector("#portfolios"),
             projects: document.querySelector("#projects"),
         },
 
@@ -51,7 +51,7 @@ export const GetElemCache: () => ElemCache = (() => {
          * Containers in sections <- hidden / unhidden : click page buttons
          * Created in index.html.haml
          */
-        reelPages: document.querySelectorAll("[id^='reel-']"),
+        portfolioPages: document.querySelectorAll("[id^='portfolio-']"),
         projectPages: document.querySelectorAll("[id^='project-']"),
     };
     return () => cache;
@@ -135,8 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
     cache.tabBtns[0]?.click();
 
     // Pagination buttons -> hide / unhide : containers in sections
-    for (const pageBtn of cache.reelPageBtns) initPageBtn(pageBtn);
-    cache.reelPageBtns[0]?.click();
+    for (const pageBtn of cache.portfolioPageBtns) initPageBtn(pageBtn);
+    cache.portfolioPageBtns[0]?.click();
     for (const pageBtn of cache.projectPageBtns) initPageBtn(pageBtn);
     cache.projectPageBtns[0]?.click();
 });

@@ -7,21 +7,21 @@
 ##########################################
 
 tabs:
-    reels:
-        label: "Reels"
-        icon: "fas fa-film"
+    portfolios:
+        label: "Portfolio"
+        icon: "fas fa-music"
     projects:
         label: "Projects"
         icon: "fas fa-clipboard-check"
 
-########################################
+#############################################
 # Array of components:
 #   blocks/_panel.haml
 #   blocks/_showcase.haml
-# Each entry is a page on the reels tab
-########################################
+# Each entry is a page on the portfolios tab
+#############################################
 
-reels:
+portfolios:
     - {vid: "https://www.youtube.com/embed/npPnXA_-04U"}
 
 ###########################################
@@ -122,14 +122,14 @@ projects:
             - current_page.data.tabs.each do |k,v|
                 = partial "parts/tab", locals: {a_class:k, label:v.label, icon:v.icon}
 
-%section.px-5#reels
-    - reels_icon = current_page.data.tabs.reels.icon
-    = partial "blocks/nav", locals: {pages:3, type:"reel", icon:reels_icon}
+%section.px-5#portfolios
+    - portfolio_icon = current_page.data.tabs.portfolios.icon
+    = partial "blocks/nav", locals: {pages:3, type:"portfolio", icon:portfolio_icon}
 
-    - current_page.data.reels.each_with_index do |reel, index|
-        - id = "reel-" + index.to_s
+    - current_page.data.portfolios.each_with_index do |portfolio, index|
+        - id = "portfolio-" + index.to_s
         .is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6(id=id)
-            = partial "blocks/panel", locals: reel
+            = partial "blocks/panel", locals: portfolio
 
 %section.px-5#projects
     - projects_icon = current_page.data.tabs.projects.icon
