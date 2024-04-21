@@ -86,7 +86,6 @@ function initTabBtn(tabBtn: HTMLAnchorElement) {
 
 /**
  * Make a page button hide / unhide content sections and set active page.
- *
  */
 function initPageBtn(pageBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
