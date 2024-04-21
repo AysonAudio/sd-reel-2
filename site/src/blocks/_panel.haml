@@ -2,6 +2,15 @@
 -#
 -#     vid?: string
 -#     A link to a YouTube video
+-#
+-#     splash?: YAML Object
+-#     A large image shown above the text description
+-#
+-#         src: string
+-#         URI to an image file
+-#
+-#         alt?: string
+-#         Alt text if image fails
 -#     
 -#     emblem?: YAML Object
 -#     A small image shown next to the text description
@@ -31,7 +40,7 @@
 -#         Anchor button text
 
 .card(style="max-width: 640px")
-    - if defined?(vid)
+    - if defined?(vid) || defined?(splash)
         .card-image
             - if defined?(vid)
                 %iframe{
@@ -41,6 +50,10 @@
                     height: "360",
                     frameborder: "0",
                     allowfullscreen: ""}
+            - if defined?(splash)
+                %figure.image
+                    %img{src:splash.src, alt:splash.alt||""}/
+                
     - if defined?(emblem) || defined?(icon) || defined?(title) || defined?(subtitle)
         .card-content
             .media
