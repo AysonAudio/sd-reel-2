@@ -9,6 +9,8 @@ type ElemCache = {
     portfolioPageBtns: NodeListOf<HTMLAnchorElement>;
     projectPageBtns: NodeListOf<HTMLAnchorElement>;
 
+    reelBtns: NodeListOf<HTMLAnchorElement>;
+
     sections: {
         portfolios: HTMLElement;
         projects: HTMLElement;
@@ -16,6 +18,8 @@ type ElemCache = {
 
     portfolioPages: NodeListOf<HTMLElement>;
     projectPages: NodeListOf<HTMLElement>;
+
+    reelVids: NodeListOf<HTMLVideoElement>;
 };
 
 /**
@@ -39,6 +43,12 @@ export const GetElemCache: () => ElemCache = (() => {
         projectPageBtns: document.querySelectorAll("[id^='btn-project-']"),
 
         /**
+         * Reel gallery menu buttons -> hide / unhide : reel videos
+         * Created in blocks/_reel-gallery.haml | Used in index.html.haml
+         */
+        reelBtns: document.querySelectorAll("[id^='reel-btn-']"),
+
+        /**
          * Sections <- hidden / unhidden : click tab buttons
          * Created in index.html.haml
          */
@@ -53,6 +63,12 @@ export const GetElemCache: () => ElemCache = (() => {
          */
         portfolioPages: document.querySelectorAll("[id^='portfolio-']"),
         projectPages: document.querySelectorAll("[id^='project-']"),
+
+        /**
+         * Reel videos in pages <- hidden / unhidden : click reel buttons
+         * Created in blocks/_reel-gallery.haml | Used in index.html.haml
+         */
+        reelVids: document.querySelectorAll("[id^='reel-vid-']"),
     };
     return () => cache;
 })();
@@ -62,30 +78,38 @@ export const GetElemCache: () => ElemCache = (() => {
 // ##################################################################### //
 
 /**
- * Make a tab button hide / unhide content sections and set active tab.
+ * Make a tab button:
+ *   Hide / unhide content sections
+ *   Set active tab button
+ *   Pause all reel videos
  */
 function initTabBtn(tabBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
 
-    // Get tag of section to unhide. Extracts it from tab button class.
+    // Get tag of section to unhide. Extracts it from tab button class
     const targetSectionTag = tabBtn.className;
 
     tabBtn.addEventListener("click", () => {
-        // Use CSS classes to hide / unhide
+        // Use CSS classes to hide / unhide content sections
         for (const id in cache.sections) {
             const section: HTMLElement = cache.sections[id];
-            if (id == targetSectionTag) section.classList.remove("is-hidden");
+            if (id === targetSectionTag) section.classList.remove("is-hidden");
             else section.classList.add("is-hidden");
         }
-        // Use CSS classes to set active
+        // Use CSS classes to set active tab button
         for (const _tabBtn of cache.tabBtns)
             _tabBtn.parentElement.classList.remove("is-active");
         tabBtn.parentElement.classList.add("is-active");
+        // Pause all reel videos
+        for (const elem of cache.reelVids) elem.pause();
     });
 }
 
 /**
- * Make a page button hide / unhide content sections and set active page.
+ * Make a page button:
+ *   Hide / unhide content subsections
+ *   Set active page button
+ *   Pause all reel videos
  */
 function initPageBtn(pageBtn: HTMLAnchorElement) {
     let cache = GetElemCache();
@@ -98,9 +122,9 @@ function initPageBtn(pageBtn: HTMLAnchorElement) {
     const targetPagesList = targetPageType + "Pages";
 
     pageBtn.addEventListener("click", () => {
-        // Use CSS classes to hide / unhide
+        // Use CSS classes to hide / unhide pages
         for (const elem of cache[targetPagesList] as NodeListOf<HTMLElement>) {
-            if (elem.id == targetPageId)
+            if (elem.id === targetPageId)
                 for (const child of elem.children)
                     child.classList.remove("is-hidden");
             else
@@ -119,6 +143,36 @@ function initPageBtn(pageBtn: HTMLAnchorElement) {
         pageBtn.classList.add("is-current");
         pageBtn.setAttribute("aria-label", "Page " + (targetPageNum + 1));
         pageBtn.setAttribute("aria-current", "page");
+        // Pause all reel videos
+        for (const elem of cache.reelVids) elem.pause();
+    });
+}
+
+/**
+ * Make a reel gallery menu button:
+ *   Hide / unhide reel videos
+ *   Set active menu button
+ *   Pause all reel videos
+ */
+function initReelBtn(reelBtn: HTMLAnchorElement) {
+    let cache = GetElemCache();
+
+    // Get id of video to unhide. Extracts uuid substring from reel button id.
+    const uuid = reelBtn.id.slice("reel-btn-".length);
+    const videoId = "reel-vid-" + uuid;
+
+    reelBtn.addEventListener("click", () => {
+        // Pause all reel videos. Use CSS classes to hide / unhide videos.
+        for (const elem of cache.reelVids) {
+            elem.pause();
+            if (elem.id === videoId) elem.classList.remove("is-hidden");
+            else elem.classList.add("is-hidden");
+        }
+        // Use CSS classes to set active menu button
+        for (const elem of cache.reelBtns) {
+            if (elem.id === reelBtn.id) elem.classList.add("is-active");
+            else elem.classList.remove("is-active");
+        }
     });
 }
 
@@ -138,4 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cache.portfolioPageBtns[0]?.click();
     for (const pageBtn of cache.projectPageBtns) initPageBtn(pageBtn);
     cache.projectPageBtns[0]?.click();
+
+    // Reel gallery menu buttons -> hide / unhide : reel videos
+    for (const reelBtn of cache.reelBtns) initReelBtn(reelBtn);
 });

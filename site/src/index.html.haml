@@ -18,6 +18,7 @@ tabs:
 # Array of components:
 #   blocks/_panel.haml
 #   blocks/_showcase.haml
+#   blocks/_reel-gallery.haml
 # Each entry is a page on the portfolios tab
 #############################################
 
@@ -28,12 +29,13 @@ portfolios:
 # Array of components:
 #   blocks/_panel.haml
 #   blocks/_showcase.haml
+#   blocks/_reel-gallery.haml
 # Each entry is a page on the projects tab
 ###########################################
 
 projects:
     -
-        splash: {src: "assets/film-splash.jpg"}
+        splash: {src: "assets/proj-1/splash.jpg"}
         icon: "fas fa-2x fa-film"
         title: "Cartoony Short Film"
         subtitle: "sound design by chris ayson&#10;&#13;music by pierce cram"
@@ -41,6 +43,11 @@ projects:
             -
                 href: "https://www.digipen.edu/showcase/student-animations/prepawsterous"
                 label: "Film Details"
+        reels:
+            -
+                uuid: "proj-1-logo"
+                label: "Logo Sound Design"
+                mp4: "assets/proj-1/logo.mp4"
         bigcell:
             icon: "fas fa-2x fa-award"
             title: "Winner, Best Sound"
@@ -129,6 +136,7 @@ projects:
         - id = "portfolio-" + index.to_s
         .is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6(id=id)
             = partial "blocks/panel", locals: portfolio
+            = partial "blocks/reel-gallery", locals: portfolio
             = partial "blocks/showcase", locals: portfolio
 
 %section.px-5#projects
@@ -139,4 +147,5 @@ projects:
         - id = "project-" + index.to_s
         .is-flex.is-flex-direction-column.is-align-items-center.mt-5.mb-6(id=id)
             = partial "blocks/panel", locals: project
+            = partial "blocks/reel-gallery", locals: project
             = partial "blocks/showcase", locals: project

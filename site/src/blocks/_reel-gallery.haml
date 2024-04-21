@@ -1,0 +1,38 @@
+-# local parameter: YAML Object
+-#
+-#     reels?: Array of YAML Objects
+-#     A list of reel articles accessed by a side menu
+-#
+-#         uuid: string
+-#         A globally unique tag used by JavaScript buttons
+-#
+-#         label: string
+-#         Menu button text
+-#
+-#         mp4: string
+-#         URI to a .mp4 video file
+-#
+
+- if defined?(reels)
+    .container.my-6.columns
+        .column.is-one-third
+            .box
+                %aside.menu.mr-6
+                    %p.menu-label Project Highlights
+                    %ul.menu-list
+                        - reels.each_with_index do |reel, index|
+                            - id = "reel-btn-" + reel.uuid
+                            - class0 = index > 0 ? "" : "is-active"
+                            %li
+                                %a(id=id class=class0)
+                                    %span.icon-text
+                                        %span.icon
+                                            %i.fas.fa-circle-play
+                                    %span= reel.label
+        .column
+            .box
+                - reels.each_with_index do |reel, index|
+                    - id = "reel-vid-" + reel.uuid
+                    - class0 = index > 0 ? "is-hidden" : ""
+                    %video(id=id class=class0 controls)
+                        %source{src:reel.mp4, type:"video/mp4"}/
