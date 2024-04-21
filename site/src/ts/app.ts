@@ -19,6 +19,7 @@ type ElemCache = {
     portfolioPages: NodeListOf<HTMLElement>;
     projectPages: NodeListOf<HTMLElement>;
 
+    reelVidBoxes: NodeListOf<HTMLDivElement>;
     reelVids: NodeListOf<HTMLVideoElement>;
 };
 
@@ -68,7 +69,8 @@ export const GetElemCache: () => ElemCache = (() => {
          * Reel videos in pages <- hidden / unhidden : click reel buttons
          * Created in blocks/_reel-gallery.haml | Used in index.html.haml
          */
-        reelVids: document.querySelectorAll("[id^='reel-vid-']"),
+        reelVidBoxes: document.querySelectorAll("[id^='reel-vid-box-']"),
+        reelVids: document.querySelectorAll("[id^='reel-vid-box-'] > video"),
     };
     return () => cache;
 })();
@@ -150,7 +152,7 @@ function initPageBtn(pageBtn: HTMLAnchorElement) {
 
 /**
  * Make a reel gallery menu button:
- *   Hide / unhide reel videos
+ *   Hide / unhide reel video boxes
  *   Set active menu button
  *   Pause all reel videos
  */
@@ -159,13 +161,12 @@ function initReelBtn(reelBtn: HTMLAnchorElement) {
 
     // Get id of video to unhide. Extracts uuid substring from reel button id.
     const uuid = reelBtn.id.slice("reel-btn-".length);
-    const videoId = "reel-vid-" + uuid;
+    const boxId = "reel-vid-box-" + uuid;
 
     reelBtn.addEventListener("click", () => {
-        // Pause all reel videos. Use CSS classes to hide / unhide videos.
-        for (const elem of cache.reelVids) {
-            elem.pause();
-            if (elem.id === videoId) elem.classList.remove("is-hidden");
+        // Use CSS classes to hide / unhide reel video boxes
+        for (const elem of cache.reelVidBoxes) {
+            if (elem.id === boxId) elem.classList.remove("is-hidden");
             else elem.classList.add("is-hidden");
         }
         // Use CSS classes to set active menu button
@@ -173,6 +174,8 @@ function initReelBtn(reelBtn: HTMLAnchorElement) {
             if (elem.id === reelBtn.id) elem.classList.add("is-active");
             else elem.classList.remove("is-active");
         }
+        // Pause all reel videos
+        for (const elem of cache.reelVids) elem.pause();
     });
 }
 

@@ -6,33 +6,46 @@
 -#         uuid: string
 -#         A globally unique tag used by JavaScript buttons
 -#
--#         label: string
--#         Menu button text
--#
 -#         mp4: string
 -#         URI to a .mp4 video file
 -#
+-#         label?: string
+-#         Menu button text
+-#
+-#         header?: string
+-#         Primary description text
+-#
+-#         body?: string
+-#         Secondary description text
 
 - if defined?(reels)
-    .container.my-6.columns
-        .column.is-one-third
-            .box
-                %aside.menu.mr-6
-                    %p.menu-label Project Highlights
-                    %ul.menu-list
-                        - reels.each_with_index do |reel, index|
-                            - id = "reel-btn-" + reel.uuid
-                            - class0 = index > 0 ? "" : "is-active"
-                            %li
-                                %a(id=id class=class0)
-                                    %span.icon-text
-                                        %span.icon
-                                            %i.fas.fa-circle-play
-                                    %span= reel.label
-        .column
-            .box
+    %section.hero.is-primary.my-6
+        .hero-body.columns
+            .column.is-one-third
+                .box
+                    %aside.menu.mr-6
+                        %p.menu-label Project Highlights
+                        %ul.menu-list
+                            - reels.each_with_index do |reel, index|
+                                - id = "reel-btn-" + reel.uuid
+                                - class0 = index > 0 ? "" : "is-active"
+                                %li
+                                    %a(id=id class=class0)
+                                        %span.icon-text
+                                            %span.icon
+                                                %i.fas.fa-circle-play
+                                        %span= reel.label || ""
+            .column
                 - reels.each_with_index do |reel, index|
-                    - id = "reel-vid-" + reel.uuid
+                    - id = "reel-vid-box-" + reel.uuid
                     - class0 = index > 0 ? "is-hidden" : ""
-                    %video(id=id class=class0 controls)
-                        %source{src:reel.mp4, type:"video/mp4"}/
+                    .box(id=id class=class0)
+                        - if defined?(reel.header)
+                            %article.message.mb-0
+                                .message-header
+                                    %p= reel.header
+                        %video.my-0(controls)
+                            %source{src:reel.mp4, type:"video/mp4"}/
+                        - if defined?(reel.body)
+                            %article.message.mt-0
+                                .message-body= reel.body
