@@ -1,6 +1,6 @@
 -# local parameter: YAML Object
 -#
--#     highlight?: YAML Object
+-#     bigcell?: YAML Object
 -#     A large horizontally-centered rectangle with images and text descriptions
 -#
 -#         emblem?: YAML Object
@@ -42,22 +42,22 @@
 -#         subtitle?: string
 -#         Secondary text description
 
-- if defined?(highlight)
+- if defined?(bigcell)
     .media.my-6
         .media-left
-            - if defined?(highlight.emblem)
+            - if defined?(bigcell.emblem)
                 %figure.image.is-64x64
                     %img{
-                        src:highlight.emblem.src,
-                        alt:highlight.emblem.alt||""}/
-            - if defined?(highlight.icon)
+                        src:bigcell.emblem.src,
+                        alt:bigcell.emblem.alt||""}/
+            - if defined?(bigcell.icon)
                 %span.icon.is-large
-                    %i{class:highlight.icon}
+                    %i{class:bigcell.icon}
         .media-content.is-clipped
-            - if defined?(highlight.title)
-                %p.title.is-4= highlight.title
-            - if defined?(highlight.subtitle)
-                %p.subtitle.is-4= highlight.subtitle
+            - if defined?(bigcell.title)
+                %p.title.is-4= bigcell.title
+            - if defined?(bigcell.subtitle)
+                %p.subtitle.is-4= bigcell.subtitle
 
 - if defined?(cells)
     .container.is-fullhd
