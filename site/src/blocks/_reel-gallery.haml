@@ -51,4 +51,5 @@
                             %source{src:reel.mp4, type:"video/mp4"}/
                         - if defined?(reel.body)
                             %article.message.mt-0
-                                .message-body= reel.body
+                                .message-body{style: "white-space: pre-line;"}
+                                    = reel.body
