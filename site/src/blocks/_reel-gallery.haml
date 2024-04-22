@@ -43,7 +43,10 @@
                         - if defined?(reel.header)
                             %article.message.mb-0
                                 .message-header
-                                    %p= reel.header
+                                    %span.icon-text
+                                        %span.icon
+                                            %i.fas.fa-circle-play.fa-sm
+                                        %span= reel.header
                         %video.my-0(controls)
                             %source{src:reel.mp4, type:"video/mp4"}/
                         - if defined?(reel.body)
