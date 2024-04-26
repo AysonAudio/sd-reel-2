@@ -20,8 +20,8 @@
 
 - if defined?(reels)
     %section.hero.is-primary.my-6
-        .hero-body.columns
-            .column.is-one-third
+        .hero-body.columns.is-desktop
+            .column.is-narrow
                 .box
                     %aside.menu.mr-6
                         %p.menu-label Project Highlights
@@ -31,7 +31,10 @@
                                 - class0 = index > 0 ? "" : "is-active"
                                 %li
                                     %a(id=id class=class0)
-                                        %span.icon-text
+                                        %span.icon-text{style: "
+                                            display: inline-block;
+                                            text-wrap: nowrap;
+                                        "}
                                             %span.icon
                                                 %i.fas.fa-circle-play
                                             %span= reel.label || ""
