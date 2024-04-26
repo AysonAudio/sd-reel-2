@@ -31,7 +31,7 @@
                                 - class0 = index > 0 ? "" : "is-active"
                                 %li
                                     %a(id=id class=class0)
-                                        %span.icon-text{style: "
+                                        %span.icon-text{style:"
                                             display: inline-block;
                                             text-wrap: nowrap;
                                         "}
@@ -54,5 +54,5 @@
                             %source{src:reel.mp4, type:"video/mp4"}/
                         - if defined?(reel.body)
                             %article.message.mt-0
-                                .message-body{style: "white-space: pre-line;"}
+                                .message-body(style= "white-space:pre-line")
                                     = reel.body

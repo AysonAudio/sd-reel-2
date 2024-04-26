@@ -39,13 +39,13 @@
 -#         label: string
 -#         Anchor button text
 
-.card.my-6(style="max-width: 640px")
+.card.my-6(style= "max-width:640px")
     - if defined?(vid) || defined?(splash)
         .card-image
             - if defined?(vid)
                 %iframe{
                     src: vid,
-                    style: "max-width: 100%",
+                    style: "max-width:100%",
                     width: "640",
                     height: "360",
                     frameborder: "0",
@@ -68,7 +68,7 @@
                     - if defined?(title)
                         %p.title.is-3= title
                     - if defined?(subtitle)
-                        %p.subtitle.is-6{style: "
+                        %p.subtitle.is-6{style:"
                             white-space: pre-line;
                             font-variant: small-caps
                         "}= subtitle
