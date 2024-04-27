@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 360 360">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #000;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-7 {
+        filter: url(#luminosity-invert-noclip-2);
+      }
+
+      .cls-4 {
+        fill: #006657;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        stroke: #006657;
+      }
+
+      .cls-8 {
+        mask: url(#mask-1);
+      }
+
+      .cls-9 {
+        mask: url(#mask);
+      }
+
+      .cls-6 {
+        opacity: 0;
+      }
+
+      .cls-10 {
+        filter: url(#luminosity-invert-noclip);
+      }
+    </style>
+    <filter id="luminosity-invert-noclip" x="197.5" y="70.5" width="144" height="225" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feColorMatrix result="cm" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/>
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="cm" in2="bg"/>
+    </filter>
+    <mask id="mask" x="197.5" y="70.5" width="144" height="225" maskUnits="userSpaceOnUse">
+      <g class="cls-10">
+        <path class="cls-5" d="M231.5,144.5c-1.91-24.78,4.91-50.88,35-49,16,1,26,31,26,50,0,17-6,46-26,48-19.78,1.98-33-23-35-49Z"/>
+      </g>
+    </mask>
+    <filter id="luminosity-invert-noclip-2" x="17.5" y="70.5" width="144" height="225" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feColorMatrix result="cm" values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0"/>
+      <feFlood flood-color="#fff" result="bg"/>
+      <feBlend in="cm" in2="bg"/>
+    </filter>
+    <mask id="mask-1" x="17.5" y="70.5" width="144" height="225" maskUnits="userSpaceOnUse">
+      <g class="cls-7">
+        <path class="cls-5" d="M127.5,144.5c1.91-24.78-4.91-50.88-35-49-16,1-26,31-26,50,0,17,6,46,26,48s33-23,35-49Z"/>
+      </g>
+    </mask>
+  </defs>
+  <g id="_">
+    <rect id="_360x360" data-name="360x360" class="cls-6" width="360" height="360"/>
+  </g>
+  <g id="content">
+    <g id="right">
+      <polygon class="cls-4" points="179.5 351.5 350.5 297.5 350.5 288.5 179.5 306.5 179.5 351.5"/>
+      <polygon class="cls-4" points="179.5 54.5 350.5 72.5 350.5 63.5 179.5 9.5 179.5 54.5"/>
+      <g>
+        <g class="cls-9">
+          <polygon class="cls-4" points="314.5 81.5 341.5 279.5 305.5 283.5 290.5 217.5 242.5 220.5 233.5 291.5 197.5 295.5 197.5 70.5 314.5 81.5"/>
+        </g>
+        <path class="cls-2" d="M251.6,144.51c-.64-6.56,1.66-13.46,11.82-12.97,5.4.26,8.78,8.2,8.78,13.23,0,4.5-2.03,12.17-8.78,12.7s-11.15-6.09-11.82-12.97Z"/>
+        <path class="cls-4" d="M254.57,144.51c-.46-5.04,1.18-10.35,8.4-9.97,3.84.2,6.24,6.31,6.24,10.18,0,3.46-1.44,9.36-6.24,9.77s-7.92-4.68-8.4-9.97Z"/>
+      </g>
+    </g>
+    <g id="left">
+      <polygon class="cls-3" points="179.5 351.5 8.5 297.5 8.5 288.5 179.5 306.5 179.5 351.5"/>
+      <polygon class="cls-3" points="179.5 54.5 8.5 72.5 8.5 63.5 179.5 9.5 179.5 54.5"/>
+      <g>
+        <g class="cls-8">
+          <polygon class="cls-3" points="44.5 81.5 17.5 279.5 53.5 283.5 68.5 217.5 116.5 220.5 125.5 291.5 161.5 295.5 161.5 70.5 44.5 81.5"/>
+        </g>
+        <path class="cls-1" d="M107.4,144.51c.64-6.56-1.66-13.46-11.82-12.97-5.4.26-8.78,8.2-8.78,13.23,0,4.5,2.03,12.17,8.78,12.7s11.15-6.09,11.82-12.97Z"/>
+        <path class="cls-3" d="M104.43,144.51c.46-5.04-1.18-10.35-8.4-9.97-3.84.2-6.24,6.31-6.24,10.18,0,3.46,1.44,9.36,6.24,9.77s7.92-4.68,8.4-9.97Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
