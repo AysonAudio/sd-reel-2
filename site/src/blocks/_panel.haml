@@ -51,7 +51,7 @@
                     frameborder: "0",
                     allowfullscreen: ""}
             - if defined?(splash)
-                %figure.image
+                %figure.image.is-unselectable
                     %img{src:splash.src, alt:splash.alt||""}/
                 
     - if defined?(emblem) || defined?(icon) || defined?(title) || defined?(subtitle)
@@ -76,4 +76,4 @@
         %footer.card-footer
             - if defined?(links)
                 - for link in links
-                    %a.card-footer-item{href:link.href}= link.label
+                    %a.card-footer-item.is-unselectable{href:link.href}= link.label

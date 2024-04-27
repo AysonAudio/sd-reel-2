@@ -24,12 +24,12 @@
             .column.is-narrow
                 .box
                     %aside.menu.mr-6
-                        %p.menu-label Project Highlights
+                        %p.menu-label.is-unselectable Project Highlights
                         %ul.menu-list
                             - reels.each_with_index do |reel, index|
                                 - id = "reel-btn-" + reel.uuid
                                 - class0 = index > 0 ? "" : "is-active"
-                                %li
+                                %li.is-unselectable
                                     %a(id=id class=class0)
                                         %span.icon-text{style:"
                                             display: inline-block;
