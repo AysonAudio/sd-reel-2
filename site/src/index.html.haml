@@ -8,11 +8,12 @@
 
 tabs:
     portfolios:
-        label: Portfolio
         icon: fas fa-file-audio
+        label: Portfolio
     projects:
-        label: Projects
         icon: fas fa-clipboard-check
+        label: Projects
+        starts_active: true
 
 #############################################
 # Array of components:
@@ -148,9 +149,14 @@ projects:
     .tabs.is-centered
         %ul
             - current_page.data.tabs.each do |k,v|
-                = partial "parts/tab", locals: {a_class:k, label:v.label, icon:v.icon}
+                = partial "parts/tab", locals: { |
+                    a_class: k, |
+                    icon: v.icon, |
+                    label: v.label, |
+                    starts_active: v.starts_active |
+                } |
 
-%section.px-5#portfolios
+%section.px-5#portfolios.is-hidden
     - portfolio_icon = current_page.data.tabs.portfolios.icon
     = partial "blocks/nav", locals: {pages:3, type:"portfolio", icon:portfolio_icon}
 

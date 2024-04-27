@@ -188,12 +188,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Tab buttons -> hide / unhide : sections
     for (const tabBtn of cache.tabBtns) initTabBtn(tabBtn);
-    cache.tabBtns[1]?.click(); //default:projects
 
     // Pagination buttons -> hide / unhide : containers in sections
     for (const pageBtn of cache.portfolioPageBtns) initPageBtn(pageBtn);
-    cache.portfolioPageBtns[0]?.click();
     for (const pageBtn of cache.projectPageBtns) initPageBtn(pageBtn);
+    // Default to first page
+    cache.portfolioPageBtns[0]?.click();
     cache.projectPageBtns[0]?.click();
 
     // Reel gallery menu buttons -> hide / unhide : reel videos

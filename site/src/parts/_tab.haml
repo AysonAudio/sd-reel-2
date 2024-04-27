@@ -3,13 +3,16 @@
 -#     a_class: string
 -#     Anchor class. Used as a tag by JavaScript
 -#
--#     type: string
--#     ID substring used to program JavaScript buttons to hide / unhide pages
--#
 -#     icon: string
 -#     CSS classes from Font Awesome
+-#
+-#     label: string
+-#     Button text
+-#
+-#     starts_active?: boolean
+-#     If true, the page will start out with this button being active
 
-%li
+%li{class: starts_active ? "is-active" : ""}
     %a(class=a_class)
         %span.icon
             %i(class=icon)
