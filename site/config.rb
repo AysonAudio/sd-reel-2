@@ -19,7 +19,7 @@ end
 configure :build do
   ignore 'ts/*'
   activate :minify_css
-  activate :minify_html
+  activate :minify_html, preserve_line_breaks: true
   activate :minify_javascript, compressor: Terser.new
   activate :asset_hash
 end
