@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Tab buttons -> hide / unhide : sections
     for (const tabBtn of cache.tabBtns) initTabBtn(tabBtn);
-    cache.tabBtns[0]?.click();
+    cache.tabBtns[1]?.click(); //default:projects
 
     // Pagination buttons -> hide / unhide : containers in sections
     for (const pageBtn of cache.portfolioPageBtns) initPageBtn(pageBtn);
